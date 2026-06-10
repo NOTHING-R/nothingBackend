@@ -15,3 +15,7 @@ mongosh "mongodb+srv://cluster0.yjq9t6j.mongodb.net/" --apiVersion 1 --username 
 ```josn
 mongodb+srv://nothing:<db_password>@cluster0.yjq9t6j.mongodb.net/
 ```
+
+```josn
+-r dotenv/config --experimental-json-modules
+```
