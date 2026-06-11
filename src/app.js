@@ -14,6 +14,9 @@ app.use(express.urlencoded({ extended: true, limit: '16kb' })) //for urlencodein
 app.use(express.static("public")) //for static files like png, images and favicon
 app.use(cookieParser()) //for accessing and curd operation on user cookie
 
+//import routes
+import router from './routes/user.routes.js'
+app.use('/api/v1/users', router)
 
 export default app
 
