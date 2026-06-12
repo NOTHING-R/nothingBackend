@@ -1,18 +1,14 @@
-import dotenv from "dotenv";
-import ConnectDB from "./db/index.js";
-import app from './app.js'
-
-// configureing dotenv for loading env variables
-dotenv.config({ path: "./.env" });
+import './loadEnv.js';
+import ConnectDB from './db/index.js';
+import app from './app.js';
 
 ConnectDB()
   .then(() => {
-    app.listen((process.env.PORT || 8000), () => {
-      console.log(`App is listening on ${process.env.PORT}`)
-    })
+    app.listen(process.env.PORT || 8000, () => {
+      console.log(`App is listening on ${process.env.PORT}`);
+    });
   })
-  .catch((error) => console.log(error))
-
+  .catch((error) => console.log(error));
 
 // require('dotenv').config({ path: "./env" })
 // import dotenv from "dotenv";
@@ -26,7 +22,6 @@ ConnectDB()
 // dotenv.config({ path: "./.env" });
 //
 // ConnectDB()
-
 
 // const app = express()
 // ; (async () => {

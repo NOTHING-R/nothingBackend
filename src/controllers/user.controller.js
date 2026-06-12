@@ -19,7 +19,7 @@ const registerUser = asyncHandeler(async (req, res) => {
     throw new ApiError(400, 'All fields are reuqired');
   }
 
-  const userExixt = Users.findOne({
+  const userExixt = await Users.findOne({
     $or: [{ username }, { email }],
   });
 
@@ -27,14 +27,16 @@ const registerUser = asyncHandeler(async (req, res) => {
     throw new ApiError(409, 'User with email or password already exixted');
   }
 
-  const avatarLocalPath = req.files?.avatar[0]?.path;
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
-
+  const avatarLocalPath = req.files?.avatar?.[0]?.path;
+  const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
+  console.log('req.files:', JSON.stringify(req.files, null, 2));
   if (!avatarLocalPath) {
-    throw new ApiError(409, 'Avatar file is required');
+    throw new ApiError(400, 'Avatar file is required');
   }
   const avatar = await uploadFileToCloudinary(avatarLocalPath);
-  const coverImage = await uploadFileToCloudinary(coverImageLocalPath);
+  const coverImage = coverImageLocalPath
+    ? await uploadFileToCloudinary(coverImageLocalPath)
+    : null;
 
   if (!avatar) {
     throw new ApiError(409, 'Avatar file is required');
@@ -49,7 +51,7 @@ const registerUser = asyncHandeler(async (req, res) => {
     password,
   });
 
-  const createdUser = Users.findById(user._id).select(
+  const createdUser = await Users.findById(user._id).select(
     '-password -refreshToken'
   );
 

@@ -25,6 +25,3 @@ mongodb+srv://nothing:<db_password>@cluster0.yjq9t6j.mongodb.net/
 .json use hoi hocce json file near jonno
 
 mone koro ami akta path a hit korlam `/hello` akhn hello amk akta response dibe <h1>hi</h1> kintu akhn ay hi er jonno user er kace `cookies` thakte hobe to oi cookies ta ace kina oi ta check korar jonno e `middleware` use kora hoi
-
-fixed the refreshToken value
-write the full controler for user Registration
