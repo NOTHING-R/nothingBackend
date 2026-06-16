@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { Users } from '../models/user.model.js';
 
 // export const verifyJWT = asyncHandeler(async (req, res, next) => {
+
 //I didn't understand why I did it but I think it is for I didn's used res perametter in this code thats why it should be just a undescore nothing else
 export const verifyJWT = asyncHandeler(async (req, _, next) => {
   try {
